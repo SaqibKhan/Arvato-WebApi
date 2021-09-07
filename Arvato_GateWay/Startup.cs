@@ -34,14 +34,9 @@ namespace GateWayApi.DAL
             services.AddSingleton<ILoggerService, LoggerService>();
             services.AddSingleton<IGenericRepository<LogItem>, GenericRepository<LogItem>>();
             
-            //var options = new DbContextOptionsBuilder<LogContext>().UseInMemoryDatabase(databaseName: "LogsDb").Options;
-            // services.AddDbContext<LogContext>(options,ServiceLifetime.Singleton);
-
             // services.AddDbContext<LogContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
             services.AddDbContext<LogAnalyticsContext>(options =>options.UseInMemoryDatabase("LogsDb"),ServiceLifetime.Singleton);
-
-
+            
             services.AddCors();
             services.AddControllers();
           

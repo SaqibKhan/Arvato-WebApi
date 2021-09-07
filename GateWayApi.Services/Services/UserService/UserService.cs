@@ -14,15 +14,15 @@ namespace GateWayApi.Services.UserService
 {
     public class UserService : IUserService
     {
+        private readonly AppSettings _appSettings;
+
         // users hardcoded for simplicity, store in a db with hashed passwords in production applications
-        private List<User> _users = new List<User>
+        private readonly List<User> _users = new List<User>
         {
             new User { Id = 1, FirstName = "Admin", LastName = "User", Username = "admin", Password = "admin", Role = Role.Admin },
             new User { Id = 2, FirstName = "Normal", LastName = "User", Username = "user", Password = "user", Role = Role.User }
         };
-
-        private readonly AppSettings _appSettings;
-
+        
         public UserService(IOptions<AppSettings> appSettings)
         {
             _appSettings = appSettings.Value;
@@ -52,17 +52,6 @@ namespace GateWayApi.Services.UserService
             var token = tokenHandler.CreateToken(tokenDescriptor);
             user.Token = tokenHandler.WriteToken(token);
 
-            return user.WithoutPassword();
-        }
-
-        public IEnumerable<User> GetAll()
-        {
-            return _users.WithoutPasswords();
-        }
-
-        public User GetById(int id)
-        {
-            var user = _users.FirstOrDefault(x => x.Id == id);
             return user.WithoutPassword();
         }
     }

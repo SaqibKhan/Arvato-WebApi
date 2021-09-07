@@ -1,21 +1,12 @@
-﻿using System.Net.Http;
-using System.Net;
-using Microsoft.Extensions.Options;
-using Moq;
-using Xunit;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using System.Text;
-using System;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Threading.Tasks;
+using Moq;
 using GateWayApi.DAL.Controllers;
-using GateWayApi.DAL.Repository;
 using GateWayApi.Services.AzureFunCaller;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Logging;
+using Xunit;
 
 
 namespace GateWay.WebApi.Test.Controllers
@@ -26,51 +17,65 @@ namespace GateWay.WebApi.Test.Controllers
         private readonly Mock<ILogger<LoggerServiceController>> _logger;
         private readonly Mock<IAzureFunctionCallerService> _azureFunctionCaller;
 
-        public AzureFunctionCallerControllerTest(ILogger<LoggerServiceController> logger,
-            IAzureFunctionCallerService azureFunctionCaller)
+        private async Task<IEnumerable<string>> GetUserData()
         {
-            _logger = new Mock<ILogger<LoggerServiceController>>();
-            
-            _azureFunctionCaller = new Mock<IAzureFunctionCallerService>();
-            
-
+            var list = new List<string> { $"test data ", $"test data 01" };
+            return (IEnumerable<string>) list;
         }
 
-        //[Fact]
-        //public async Task Index_ReturnsAViewResult_WithAListOfBrainstormSessions()
-        //{
-        //    // Arrange
-        //    var mockRepo = new Mock<IGenericRepository<>>();
-        //    mockRepo.Setup(repo => repo.ListAsync())
-        //        .ReturnsAsync(GetTestSessions());
-        //    var controller = new HomeController(mockRepo.Object);
+        [Fact(DisplayName = "Run Azure Function return array of string")]
+        public async Task Run_Azure_Function_Return_Array_Of_String()
+        {
+            // Arrange
+            var logger = new Mock<ILogger<LoggerServiceController>>();
+            var azureFunctionCaller = new Mock<IAzureFunctionCallerService>();
 
-        //    // Act
-        //    var result = await controller.Index();
+            azureFunctionCaller.Setup(f => f.GetUserData("test")).Returns(GetUserData());
+            var controller = new AzureFunctionCallerController(logger.Object, azureFunctionCaller.Object);
 
-        //    // Assert
-        //    var viewResult = Assert.IsType<ViewResult>(result);
-        //    var model = Assert.IsAssignableFrom<IEnumerable<StormSessionViewModel>>(
-        //        viewResult.ViewData.Model);
-        //    Assert.Equal(2, model.Count());
-        //}
+            // Act
+            var result = await controller.GetDataByUser("test");
 
-        //[Theory(DisplayName = "Call_GetAsync_Method_Should_Return_ArgumentNullException")]
-        //[InlineData("")]
-        //public void Call_GetAsync_Method_Should_Return_ArgumentNullException(string dataProvide)
-        //{
-        //    var cacher = new Mock<ITimelyCache<dynamic>>();
-        //    //Arrange
-        //    var service = new StructureCommonDataService(cacher.Object);
-        //    var controller = new StructureCommonDataController(service); // WebAPI controller
+            // Assert
+            var list = result.GetEnumerator();
+            Assert.Equal(2,result.Count());
+        }
 
-        //    //ACT
-        //    var exception = Record.ExceptionAsync(async () => await controller.GetAsync(dataProvide));
+        [Fact(DisplayName = "Run Azure Function Verify that GetUserData is called once ")]
+        public async Task Run_Azure_Function_Verify_that_GetUserData_is_called_once()
+        {
+            // Arrange
+            var logger = new Mock<ILogger<LoggerServiceController>>();
+            var azureFunctionCaller = new Mock<IAzureFunctionCallerService>();
 
-        //    // Assert 
-        //    Assert.ThrowsAsync<ArgumentNullException>(async () => await controller.GetAsync(dataProvide));
+            azureFunctionCaller.Setup(f => f.GetUserData("test")).Returns(GetUserData());
+            var controller = new AzureFunctionCallerController(logger.Object, azureFunctionCaller.Object);
 
-        //}
+            // Act
+            var result = await controller.GetDataByUser("test");
+
+            // Assert
+            azureFunctionCaller.Verify(x => x.GetUserData(It.IsAny<string>()), Times.Exactly(1));
+        }
+
+
+        [Fact (DisplayName = "Get Data By User Returns list ")]
+        public async Task GetDataByUser_ReturnsAStringArray()
+        {
+            // Arrange
+            var logger = new Mock<ILogger<LoggerServiceController>>();
+            var azureFunctionCaller = new Mock<IAzureFunctionCallerService>();
+
+            azureFunctionCaller.Setup(f => f.GetUserData("test")).Returns(GetUserData());
+            var controller = new AzureFunctionCallerController(logger.Object, azureFunctionCaller.Object);
+
+            // Act
+            var result = await controller.GetDataByUser("test");
+            
+            // Assert
+            Assert.IsType<System.Collections.Generic.List<string>>(result);
+        }
+        
     }
 }
 

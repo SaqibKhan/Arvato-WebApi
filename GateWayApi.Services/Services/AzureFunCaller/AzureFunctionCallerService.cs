@@ -9,7 +9,8 @@ namespace GateWayApi.Services.AzureFunCaller
     {
         public async Task<IEnumerable<string>> GetUserData(string user)
         {
-           return  new List<string> {$"User can read the data", $"User can Write the data", $"User can delete the data"};
+            var list = new List<string> { $"User can read the data", $"User can Write the data", $"User can delete the data" };
+            return list.AsEnumerable();
         }
     }
 }

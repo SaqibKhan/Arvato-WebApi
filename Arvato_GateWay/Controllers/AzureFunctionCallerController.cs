@@ -2,8 +2,8 @@
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using GateWayApi.DAL.ActionFilter;
 using GateWayApi.DAL.Entity;
 using GateWayApi.Services.AzureFunCaller;
 using Microsoft.AspNetCore.Authorization;
@@ -12,7 +12,7 @@ namespace GateWayApi.DAL.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-  //  [RequestRateLimit(Name = "Limit Request Number", Seconds = 5)]
+    [RequestRateLimit(Name = "Limit Request Number", Seconds = 5)]
     public class AzureFunctionCallerController : ControllerBase
     {
         private readonly ILogger<LoggerServiceController> _logger;
@@ -33,6 +33,7 @@ namespace GateWayApi.DAL.Controllers
             IEnumerable<string> result = null;
             try
             {
+                // Fake service for Azure Function Caller
                 result = await _azureFunctionCaller.GetUserData(userId);
 
             }

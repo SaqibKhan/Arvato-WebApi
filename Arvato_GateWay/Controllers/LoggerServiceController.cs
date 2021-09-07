@@ -2,11 +2,8 @@
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using GateWayApi.DAL.Entity;
 using GateWayApi.Services.LoggerRepo;
-using Microsoft.AspNetCore.Authorization;
 
 namespace GateWayApi.DAL.Controllers
 {

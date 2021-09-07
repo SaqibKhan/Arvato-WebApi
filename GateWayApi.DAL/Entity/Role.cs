@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace GateWayApi.DAL.Entity
+﻿namespace GateWayApi.DAL.Entity
 {
     public class Role
     {
