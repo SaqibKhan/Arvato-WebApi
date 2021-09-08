@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GateWayApi.Services.Models
+namespace GateWayApi.Shared.Models
 {
     public class AuthenticateModel
     {

@@ -1,5 +1,5 @@
-﻿using GateWayApi.Services.Models;
-using GateWayApi.Shared.Interfaces.UserService;
+﻿using GateWayApi.Shared.Interfaces.UserService;
+using GateWayApi.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GateWayApi.DAL.Controllers
