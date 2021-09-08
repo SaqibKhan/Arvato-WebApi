@@ -3,11 +3,21 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Api.DAL\**" />
+    <Compile Remove="Api.Services\**" />
+    <EmbeddedResource Remove="Api.DAL\**" />
+    <EmbeddedResource Remove="Api.Services\**" />
+    <None Remove="Api.DAL\**" />
+    <None Remove="Api.Services\**" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="coverlet.msbuild" Version="2.8.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="FluentAssertions" Version="6.1.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
     <PackageReference Include="Moq" Version="4.13.1" />
     <PackageReference Include="xunit" Version="2.4.1" />
@@ -20,10 +30,6 @@
     <ProjectReference Include="..\Arvato_GateWay\GateWay_API.csproj" />
     <ProjectReference Include="..\GateWayApi.DAL\GateWayApi.DAL.csproj" />
     <ProjectReference Include="..\GateWayApi.Services\GateWayApi.Services.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Api.Services\" />
-    <Folder Include="Api.DAL\" />
   </ItemGroup>
 
 </Project>

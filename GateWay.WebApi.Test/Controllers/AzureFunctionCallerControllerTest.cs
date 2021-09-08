@@ -1,12 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Reflection;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using FluentAssertions;
 using Moq;
 using GateWayApi.DAL.Controllers;
 using GateWayApi.Shared.AzureFunCaller;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Abstractions;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Routing;
 using Xunit;
-
+using FluentAssertions.Types;
+using GateWayApi.DAL;
+using Microsoft.AspNetCore.Hosting;
 
 namespace GateWay.WebApi.Test.Controllers
 {
@@ -74,7 +86,31 @@ namespace GateWay.WebApi.Test.Controllers
             // Assert
             Assert.IsType<System.Collections.Generic.List<string>>(result);
         }
-        
+
+
+
+        [Fact(DisplayName = "Validate LoggerServiceController must have Authorization Attribute")]
+        public void LoggerServiceController_Should_Implement_Authorize_Attribute()
+        {
+            var excludedTypes = new[]
+            {
+                typeof(LoggerServiceController),
+                typeof(UsersController)
+            };
+            var assembly = Assembly.GetAssembly(typeof(AzureFunctionCallerController));
+            var allControllers = AllTypes.From(assembly).ThatDeriveFrom<ControllerBase>().Except(excludedTypes);
+
+            var controllersWithoutAuthorizeAttribute = allControllers.Where(t => !t.IsDefined(typeof(AuthorizeAttribute), false)).ToList();
+            var controllersName = string.Join(" and ", controllersWithoutAuthorizeAttribute.Select(x => x.Name));
+
+            controllersWithoutAuthorizeAttribute.Count.Should().Be(1, "because {0} should have the Authorize attribute", controllersName);
+            Assert.Equal("AzureFunctionCallerController",controllersName);
+        }
+
+
+       
+
+
     }
 }
 

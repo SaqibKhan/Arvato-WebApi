@@ -27,18 +27,6 @@ namespace GateWay.WebApi.Test.ActionFilter
         [InlineData(2, 1, 1)]
         public void Run_validationFilter_check_hit(int request, int seconds, int delay)
         {
-            // Arrange
-          
-            var validationFilter = new RequestRateLimitAttribute {Name = "test", Seconds = seconds};
-            var modelState = new ModelStateDictionary();
-            modelState.AddModelError("name", "invalid");
-            var connection = new Mock<ConnectionInfo>();
-            var httpContext = new DefaultHttpContext();
-            httpContext.Connection.RemoteIpAddress = IPAddress.Parse("192.168.0.27");
-            var context = new ActionContext(httpContext, Mock.Of<RouteData>(), Mock.Of<ActionDescriptor>(), modelState);
-            var actionExecutingContext =
-                new ActionExecutedContext(context, new List<IFilterMetadata>(), Mock.Of<ControllerBase>());
-
             // Act
             if (request == 1)
             {
@@ -62,7 +50,6 @@ namespace GateWay.WebApi.Test.ActionFilter
             var validationFilter = new RequestRateLimitAttribute { Name = "test", Seconds = seconds };
             var modelState = new ModelStateDictionary();
             modelState.AddModelError("name", "invalid");
-            var connection = new Mock<ConnectionInfo>();
             var httpContext = new DefaultHttpContext();
             httpContext.Connection.RemoteIpAddress = IPAddress.Parse("192.168.0.27");
             var context = new ActionContext(httpContext, Mock.Of<RouteData>(), Mock.Of<ActionDescriptor>(), modelState);
@@ -87,8 +74,7 @@ namespace GateWay.WebApi.Test.ActionFilter
             var validationFilter = new RequestRateLimitAttribute { Name = "test", Seconds = seconds };
             var modelState = new ModelStateDictionary();
             modelState.AddModelError("name", "invalid");
-            var connection = new Mock<ConnectionInfo>();
-            var httpContext = new DefaultHttpContext();
+           var httpContext = new DefaultHttpContext();
             httpContext.Connection.RemoteIpAddress = IPAddress.Parse("192.168.0.27");
             var context = new ActionContext(httpContext, Mock.Of<RouteData>(), Mock.Of<ActionDescriptor>(), modelState);
 
@@ -112,7 +98,6 @@ namespace GateWay.WebApi.Test.ActionFilter
             var validationFilter = new RequestRateLimitAttribute { Name = "test", Seconds = seconds };
             var modelState = new ModelStateDictionary();
             modelState.AddModelError("name", "invalid");
-            var connection = new Mock<ConnectionInfo>();
             var httpContext = new DefaultHttpContext();
             httpContext.Connection.RemoteIpAddress = IPAddress.Parse("192.168.0.27");
             var context = new ActionContext(httpContext, Mock.Of<RouteData>(), Mock.Of<ActionDescriptor>(), modelState);
