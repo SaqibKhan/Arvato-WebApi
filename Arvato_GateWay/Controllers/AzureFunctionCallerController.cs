@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using GateWayApi.DAL.ActionFilter;
 using GateWayApi.DAL.Entity;
-using GateWayApi.Services.AzureFunCaller;
+using GateWayApi.Shared.AzureFunCaller;
 using Microsoft.AspNetCore.Authorization;
 
 namespace GateWayApi.DAL.Controllers

@@ -1,9 +1,5 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using GateWayApi.DAL.Controllers;
-using GateWayApi.Services.AzureFunCaller;
-using Microsoft.Extensions.Logging;
-using Moq;
+﻿using System.Threading.Tasks;
+using GateWayApi.Services;
 using Xunit;
 
 namespace GateWay.WebApi.Test.Services

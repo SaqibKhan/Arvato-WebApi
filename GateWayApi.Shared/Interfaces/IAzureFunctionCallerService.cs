@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace GateWayApi.Services.AzureFunCaller
+namespace GateWayApi.Shared.AzureFunCaller
 {
     public interface IAzureFunctionCallerService
     {

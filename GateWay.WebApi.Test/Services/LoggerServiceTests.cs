@@ -1,8 +1,6 @@
 ﻿using System.Threading.Tasks;
 using GateWayApi.DAL.Entity;
 using GateWayApi.DAL.Repository;
-using GateWayApi.Services.AzureFunCaller;
-using GateWayApi.Services.LoggerRepo;
 using GateWayApi.Services.Services;
 using Moq;
 using Xunit;

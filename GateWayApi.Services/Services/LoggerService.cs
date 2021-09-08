@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using GateWayApi.DAL.Entity;
 using GateWayApi.DAL.Repository;
-using GateWayApi.Services.LoggerRepo;
+using GateWayApi.Shared.Interfaces.LoggerService;
 
 namespace GateWayApi.Services.Services
 {

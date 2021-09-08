@@ -1,4 +1,4 @@
-﻿namespace GateWayApi.Services.Helpers
+﻿namespace GateWayApi.Shared.UserService.Helpers
 {
     public class AppSettings
     {

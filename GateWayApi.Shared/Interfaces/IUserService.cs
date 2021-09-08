@@ -1,6 +1,6 @@
 ﻿using GateWayApi.DAL.Entity;
 
-namespace GateWayApi.Services.UserService
+namespace GateWayApi.Shared.Interfaces.UserService
 {
     public interface IUserService
     {

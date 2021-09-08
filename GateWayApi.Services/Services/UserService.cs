@@ -5,12 +5,14 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using GateWayApi.DAL.Entity;
-using GateWayApi.Services.ExtensionMethods;
-using GateWayApi.Services.Helpers;
+using GateWayApi.Shared.ExtensionMethods;
+using GateWayApi.Shared.Interfaces.UserService;
+using GateWayApi.Shared.UserService;
+using GateWayApi.Shared.UserService.Helpers;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-namespace GateWayApi.Services.UserService
+namespace GateWayApi.Services
 {
     public class UserService : IUserService
     {

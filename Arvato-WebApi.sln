@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GateWayApi.DAL", "GateWayAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GateWay.WebApi.Test", "GateWay.WebApi.Test\GateWay.WebApi.Test.csproj", "{737F76E3-65F0-4A09-9E4E-EFDA35AEBB1F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GateWayApi.Shared", "GateWayApi.Shared\GateWayApi.Shared.csproj", "{BA9FC20B-366E-490D-9B06-651C5D12A16F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{737F76E3-65F0-4A09-9E4E-EFDA35AEBB1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{737F76E3-65F0-4A09-9E4E-EFDA35AEBB1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{737F76E3-65F0-4A09-9E4E-EFDA35AEBB1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA9FC20B-366E-490D-9B06-651C5D12A16F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA9FC20B-366E-490D-9B06-651C5D12A16F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA9FC20B-366E-490D-9B06-651C5D12A16F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA9FC20B-366E-490D-9B06-651C5D12A16F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

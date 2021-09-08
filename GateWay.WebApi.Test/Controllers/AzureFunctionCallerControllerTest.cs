@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Moq;
 using GateWayApi.DAL.Controllers;
-using GateWayApi.Services.AzureFunCaller;
+using GateWayApi.Shared.AzureFunCaller;
 using Microsoft.Extensions.Logging;
 using Xunit;
 

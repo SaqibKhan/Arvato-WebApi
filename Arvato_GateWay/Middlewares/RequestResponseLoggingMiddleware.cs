@@ -2,7 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using GateWayApi.DAL.Entity;
-using GateWayApi.Services.LoggerRepo;
+using GateWayApi.Shared.Interfaces.LoggerService;
 using Microsoft.AspNetCore.Http;
 
 namespace GateWayApi.Services.Middlewares

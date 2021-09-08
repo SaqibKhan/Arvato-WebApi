@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GateWayApi.Shared.AzureFunCaller;
 
-namespace GateWayApi.Services.AzureFunCaller
+namespace GateWayApi.Services
 {
     public class AzureFunctionCallerService: IAzureFunctionCallerService
     {

@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using GateWayApi.DAL.Entity;
-using GateWayApi.Services.LoggerRepo;
+using GateWayApi.Shared.Interfaces.LoggerService;
 
 namespace GateWayApi.DAL.Controllers
 {

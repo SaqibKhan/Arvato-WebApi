@@ -2,7 +2,7 @@
 using GateWayApi.DAL.Entity;
 
 
-namespace GateWayApi.Services.LoggerRepo
+namespace GateWayApi.Shared.Interfaces.LoggerService
 {
     public interface ILoggerService
     {
