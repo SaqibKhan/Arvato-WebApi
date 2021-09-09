@@ -12,7 +12,7 @@ namespace GateWayApi.DAL.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    [RequestRateLimit(Name = "Limit Request Number", Seconds = 5)]
+    [RequestRateLimit(Name = "Limit Request Number", Seconds = 1)]
     public class AzureFunctionCallerController : ControllerBase
     {
         private readonly ILogger<LoggerServiceController> _logger;
