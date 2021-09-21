@@ -106,11 +106,7 @@ namespace GateWay.WebApi.Test.Controllers
             controllersWithoutAuthorizeAttribute.Count.Should().Be(1, "because {0} should have the Authorize attribute", controllersName);
             Assert.Equal("AzureFunctionCallerController",controllersName);
         }
-
-
-       
-
-
+        
     }
 }
 

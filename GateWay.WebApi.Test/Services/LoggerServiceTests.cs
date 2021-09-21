@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using GateWayApi.DAL.Entity;
 using GateWayApi.DAL.Repository;
 using GateWayApi.Services.Services;
@@ -26,4 +28,52 @@ namespace GateWay.WebApi.Test.Services
             logRepository.Verify(x => x.Insert(logItem), Times.Exactly(1));
         }
     }
+
+
+
+
+   public interface IAlertDAO
+   {
+       Guid AddAlert(DateTime time);
+
+       DateTime GetAlert(Guid id);
+   }
+
+   public class AlertService
+   {
+       private readonly IAlertDAO storage;
+
+       public AlertService(IAlertDAO alertDAO)
+       {
+           storage = alertDAO;
+       }
+
+       public Guid RaiseAlert(IAlertDAO storage)
+       {
+           return this.storage.AddAlert(DateTime.Now);
+       }
+
+       public DateTime GetAlertTime(Guid id)
+       {
+           return storage.GetAlert(id);
+       }
+   }
+
+   public class AlertDAO : IAlertDAO
+   {
+       private readonly Dictionary<Guid, DateTime> alerts = new Dictionary<Guid, DateTime>();
+
+
+       public Guid AddAlert(DateTime time)
+       {
+           Guid id = Guid.NewGuid();
+           this.alerts.Add(id, time);
+           return id;
+       }
+
+       public DateTime GetAlert(Guid id)
+       {
+           return this.alerts[id];
+       }
+   }
 }
